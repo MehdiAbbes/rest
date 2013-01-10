@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ng.tm.domain.Profile;
+import com.ng.tm.dto.ProfileList;
 import com.ng.tm.repository.ProfileRepository;
 
 @Controller
@@ -33,5 +34,13 @@ public class ProfileContoller {
 			@PathVariable("id") final String profileId) {
 		Profile profile = profileRepo.findOne(profileId);
 		return new ResponseEntity<Profile>(profile, HttpStatus.OK);
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "", produces = {
+			MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
+	public ResponseEntity<ProfileList> retrieveProfilesList() {
+		ProfileList profilesList = new ProfileList();
+		profilesList.setProfilesList(profileRepo.findAll());
+		return new ResponseEntity<ProfileList>(profilesList, HttpStatus.OK);
 	}
 }
