@@ -1,0 +1,21 @@
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-09 08:13:36
+project --topLevelPackage com.ng.tm --projectName rest
+mongo setup --databaseName rest --host localhost --port 27017
+entity mongo --class ~.domain.Tool
+field string --fieldName label --notNull
+field string --fieldName description --notNull
+field number --type java.lang.Integer --fieldName score 
+entity mongo --class ~.domain.Profile 
+field string --fieldName firstname --notNull --sizeMin 2
+field string --fieldName lastname --notNull --sizeMin 2
+field set --type ~.domain.Tool --fieldName tools
+repository mongo --interface ~.repository.ToolRepository --entity ~.domain.Tool
+repository mongo --interface ~.repository.ProfileRepository --entity ~.domain.Profile
+web mvc setup
+perform eclipse
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-09 08:14:35
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-09 08:14:35
+// script --file /Users/mehdiabbes/Desktop/init.roo
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-09 08:14:35
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-09 08:17:23
