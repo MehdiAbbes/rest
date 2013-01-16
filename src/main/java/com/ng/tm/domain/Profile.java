@@ -13,10 +13,11 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Persistent;
+import org.springframework.hateoas.Identifiable;
 
 @Persistent
 @XmlRootElement
-public class Profile {
+public class Profile implements Identifiable<String> {
 
 	@NotNull
 	@Size(min = 2)
@@ -32,6 +33,7 @@ public class Profile {
 	@Id
 	private String id;
 
+	@Override
 	public String getId() {
 		return id;
 	}

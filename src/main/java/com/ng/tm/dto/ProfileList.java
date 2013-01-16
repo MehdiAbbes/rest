@@ -6,19 +6,19 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.ng.tm.domain.Profile;
+import com.ng.tm.web.spring.ProfileResource;
 
-@XmlRootElement(name = "profilesList")
+@XmlRootElement
 public class ProfileList {
 
-	@XmlElement(name = "Profile")
-	private List<Profile> profilesList = new ArrayList<Profile>();
+	private List<ProfileResource> profilesList = new ArrayList<ProfileResource>();
 
-	public List<Profile> getProfilesList() {
+	@XmlElement(name = "Profile")
+	public List<ProfileResource> getProfilesList() {
 		return profilesList;
 	}
 
-	public void setProfilesList(final List<Profile> profilesList) {
+	public void setProfilesList(final List<ProfileResource> profilesList) {
 		this.profilesList = profilesList;
 	}
 
