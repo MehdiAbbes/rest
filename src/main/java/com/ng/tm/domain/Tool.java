@@ -1,18 +1,20 @@
 package com.ng.tm.domain;
 
-import java.math.BigInteger;
-
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Persistent;
+import org.springframework.hateoas.Identifiable;
 
+@XmlRootElement
 @Persistent
-public class Tool {
+public class Tool implements Identifiable<String> {
 
 	@NotNull
+	@Id
 	private String label;
 
 	@NotNull
@@ -50,14 +52,39 @@ public class Tool {
 		this.score = score;
 	}
 
-	@Id
-	private BigInteger id;
-
-	public BigInteger getId() {
-		return id;
+	@Override
+	public String getId() {
+		return label;
 	}
 
-	public void setId(final BigInteger id) {
-		this.id = id;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = (prime * result) + ((label == null) ? 0 : label.hashCode());
+		return result;
 	}
+
+	@Override
+	public boolean equals(final Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		Tool other = (Tool) obj;
+		if (label == null) {
+			if (other.label != null) {
+				return false;
+			}
+		} else if (!label.equals(other.label)) {
+			return false;
+		}
+		return true;
+	}
+
 }

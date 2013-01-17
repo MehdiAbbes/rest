@@ -1,13 +1,16 @@
 package com.ng.tm.repository;
 
-import com.ng.tm.domain.Tool;
-import java.math.BigInteger;
 import java.util.List;
+
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface ToolRepository extends PagingAndSortingRepository<Tool, BigInteger> {
+import com.ng.tm.domain.Tool;
 
-    List<com.ng.tm.domain.Tool> findAll();
+@Repository
+public interface ToolRepository extends
+		PagingAndSortingRepository<Tool, String> {
+
+	@Override
+	List<com.ng.tm.domain.Tool> findAll();
 }
