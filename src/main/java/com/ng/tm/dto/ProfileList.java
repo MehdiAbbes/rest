@@ -13,7 +13,7 @@ public class ProfileList {
 
 	private List<ProfileResource> profilesList = new ArrayList<ProfileResource>();
 
-	@XmlElement(name = "Profile")
+	@XmlElement(name = "profile")
 	public List<ProfileResource> getProfilesList() {
 		return profilesList;
 	}

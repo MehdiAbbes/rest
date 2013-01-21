@@ -1,5 +1,7 @@
 package com.ng.tm.domain;
 
+import java.net.URI;
+
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -9,9 +11,16 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Persistent;
 import org.springframework.hateoas.Identifiable;
 
+import com.ng.tm.web.jersey.ToolJerseyResource;
+import com.sun.jersey.server.linking.Ref;
+import com.sun.jersey.server.linking.Ref.Style;
+
 @XmlRootElement
 @Persistent
 public class Tool implements Identifiable<String> {
+
+	@Ref(resource = ToolJerseyResource.class, style = Style.ABSOLUTE)
+	private URI toolsUri;
 
 	@NotNull
 	@Id
@@ -21,6 +30,17 @@ public class Tool implements Identifiable<String> {
 	private String description;
 
 	private Integer score;
+
+	@Ref(value = "tools/{label}", style = Style.ABSOLUTE)
+	private URI toolUri;
+
+	public URI getToolUri() {
+		return toolUri;
+	}
+
+	public void setToolUri(final URI toolUri) {
+		this.toolUri = toolUri;
+	}
 
 	@Override
 	public String toString() {
@@ -50,6 +70,14 @@ public class Tool implements Identifiable<String> {
 
 	public void setScore(final Integer score) {
 		this.score = score;
+	}
+
+	public URI getToolsUri() {
+		return toolsUri;
+	}
+
+	public void setToolsUri(final URI toolsUri) {
+		this.toolsUri = toolsUri;
 	}
 
 	@Override
